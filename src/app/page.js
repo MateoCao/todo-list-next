@@ -1,6 +1,7 @@
 import EditTask from "./(components)/editTask";
 import MainTask from "./(components)/mainTask";
 import MainTaskBar from "./(components)/mainTaskBar";
+import Task from "./(components)/task";
 import TaskList from "./(components)/taskList";
 import VerticalBar from "./(components)/verticalBar";
 
@@ -11,7 +12,9 @@ export default function Home () {
         </VerticalBar>
         <MainTask>
           <MainTaskBar />
-          <TaskList />
+          <TaskList>
+            <Task> Esta es una tarea </Task>
+          </TaskList>
           <EditTask />
         </MainTask>
     </main>
