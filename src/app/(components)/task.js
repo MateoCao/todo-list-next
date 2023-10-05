@@ -1,5 +1,8 @@
 'use client'
 import React, { useState } from 'react';
+import { BsCheckCircle } from 'react-icons/bs';
+import IconButton from './iconButton';
+import TaskFunctions from './taskFunctions';
 
 export default function Task ({ children }) {
 
@@ -8,7 +11,7 @@ export default function Task ({ children }) {
 
     return(
         <div id="task" className="h-8 w-full flex border rounded-xl bg-slate-300 items-center justify-between px-5">
-            <div id="taskIcon" className="w-2 h-5"> X </div>
+            <IconButton icon={ <BsCheckCircle /> } />
             <input
                 type="text"
                 id="taskText"
@@ -16,9 +19,7 @@ export default function Task ({ children }) {
                 value={taskText} // Establece el valor del input
                 onChange={(e) => setTaskText(e.target.value)} // Maneja cambios en el input
             />
-            <div id="taskFunctions" className="w-5 h-5">
-                <button id="iconButton" className=""> E </button>
-            </div>
+            <TaskFunctions />
         </div>
     )
 }
