@@ -15,7 +15,7 @@ export default function Task ({ children }) {
             <input
                 type="text"
                 id="taskText"
-                className="h-5 w-9/12 border rounded-xl bg-slate-100"
+                className="h-5 w-9/12 border rounded-xl bg-slate-100 px-5 text-xs"
                 value={taskText} // Establece el valor del input
                 onChange={(e) => setTaskText(e.target.value)} // Maneja cambios en el input
             />
