@@ -1,12 +1,9 @@
 import Navbar from './(components)/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
-
-// Asi se pueden poner fuentes
+import { AuthProvider } from './Providers'
 
 const inter = Inter({ subsets: ['latin'] })
-
-// Manejo fácil de la metadata para el SEO
 
 export const metadata = {
   title: 'Create Next App',
@@ -17,11 +14,10 @@ export default function RootLayout ({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Asi te decia para poner componentes que se vean en todas las rutas hijas. En este caso se vería durante
-        toda la página porque es el root layout. Se puede hacer lo mismo y poner un layout en rutas hijas para mostrar
-        x componente que queremos que se vea solamente en esas rutas xD. */}
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )
