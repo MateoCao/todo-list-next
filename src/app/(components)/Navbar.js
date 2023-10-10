@@ -10,7 +10,7 @@ function Navbar () {
     router.push('/register')
   }
   return (
-        <nav className="h-12 sticky top-0 bg-sky-600 flex font-semibold justify-between items-center p-2">
+        <nav className="h-[7vh] sticky top-0 bg-sky-600 flex font-semibold justify-between items-center p-2">
             <h1 className="text-2xl text-white">
               <Link href="/">Casual Chat</Link>
             </h1>
