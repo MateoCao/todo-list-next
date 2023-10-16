@@ -9,10 +9,13 @@ export default function Home () {
     <main className="flex w-[86vw] h-screen">
         <MainTask>
           <MainTaskBar />
-          <TaskList>
+          <TaskList width="full">
             <Task> Esta es una tarea </Task>
+            <Task> Realizar cosas </Task>
+            <Task> Gym </Task>
+            <Task> Soy una nueva taskk </Task>
           </TaskList>
-          <EditTask />
+          <EditTask visible={false} />
         </MainTask>
     </main>
   )

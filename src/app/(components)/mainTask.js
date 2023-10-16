@@ -1,6 +1,6 @@
 export default function MainTask ({ children, bgimagen }) {
   const sectionStyle = {
-    backgroundImage: `url('${bgimagen}')`
+    backgroundImage: 'url(' + { bgimagen } + ')'
   }
 
   return (
