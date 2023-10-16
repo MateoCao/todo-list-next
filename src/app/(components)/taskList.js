@@ -1,10 +1,9 @@
 export default function TaskList ({ children, bg }) {
-    
-    const bgDefault = "bg-slate-200"
-    
-    return(
-        <section id='taskList' className={`${ bg || bgDefault } w-7/12 rounded-xl h-5/6 drop-shadow-lg flex justify-center flex-wrap p-5`}>
+  const bgDefault = 'bg-slate-200'
+
+  return (
+        <section id='taskList' className={`${bg || bgDefault} w-7/12 rounded-xl h-5/6 drop-shadow-lg flex justify-center flex-wrap p-5`}>
             { children }
         </section>
-    )
+  )
 }

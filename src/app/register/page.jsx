@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { registerSchema } from '@/validationsSchemas/userValidationSchema.js'
-// import { submitUser } from '../api/_actions'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import InputField from '../(components)/InputField'
@@ -36,17 +35,17 @@ function Register () {
         return false
       }
 
-      // if (response.ok) {
-      //   const authRes = await signIn('credentials', {
-      //     email: response.email,
-      //     password: data.password,
-      //     redirect: false
-      //   })
+      if (response.ok) {
+        const authRes = await signIn('credentials', {
+          email: response.email,
+          password: data.password,
+          redirect: false
+        })
 
-      //   console.log(authRes)
+        console.log(authRes)
 
-      //   if (authRes.ok) return router.push('/')
-      // }
+        if (authRes.ok) return router.push('/')
+      }
       reset()
     } catch (error) {
       console.log(error)

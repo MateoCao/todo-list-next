@@ -1,15 +1,14 @@
 'use client'
-import React, { useState } from 'react';
-import { BsCheckCircle } from 'react-icons/bs';
-import IconButton from './iconButton';
-import TaskFunctions from './taskFunctions';
+import React, { useState } from 'react'
+import { BsCheckCircle } from 'react-icons/bs'
+import IconButton from './iconButton'
+import TaskFunctions from './taskFunctions'
 
 export default function Task ({ children }) {
+  // Inicializa el valor del input con el texto proporcionado o una cadena vacía
+  const [taskText, setTaskText] = useState(children || '')
 
-    // Inicializa el valor del input con el texto proporcionado o una cadena vacía
-    const [taskText, setTaskText] = useState(children || ''); 
-
-    return(
+  return (
         <div id="task" className="h-8 w-full flex border rounded-xl bg-slate-300 items-center justify-between px-5">
             <IconButton icon={ <BsCheckCircle /> } />
             <input
@@ -21,5 +20,5 @@ export default function Task ({ children }) {
             />
             <TaskFunctions />
         </div>
-    )
+  )
 }
