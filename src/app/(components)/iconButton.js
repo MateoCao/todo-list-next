@@ -1,6 +1,6 @@
-export default function IconButton ({ icon }) {
+export default function IconButton ({ icon, onClick, className }) {
     
     return (
-        <button className="rounded-md drop-shadow-lg"> { icon } </button>
+        <button className={`${className} rounded-md drop-shadow-lg`} onClick={onClick}> { icon } </button>
     )
 }
