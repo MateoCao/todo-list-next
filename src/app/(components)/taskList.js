@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from "react"
-import TaskCreator from "./taskCreator"
+import TaskCreator from './taskCreator'
 import { Context } from "../(context)/context"
 import Pagination from "./pagination"
 
@@ -22,5 +22,5 @@ export default function TaskList ({ children, bgBody, bgTask, bgHeaderAndFooter,
             </div>
             <Pagination className={`${ bgHeaderAndFooter || bgDefault }`}/>
         </section>
-    )
+  )
 }

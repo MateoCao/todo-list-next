@@ -1,7 +1,7 @@
 'use client'
-import React, { useState } from 'react';
-import TaskFunctions from './taskFunctions';
-import TaskGestions from './TaskGestions';
+import React, { useState } from 'react'
+import TaskFunctions from './taskFunctions'
+import TaskGestions from './TaskGestions'
 
 export default function Task ({ children, bg }) {
 
@@ -31,5 +31,5 @@ export default function Task ({ children, bg }) {
                 />
             </div>
 
-    )
+  )
 }
