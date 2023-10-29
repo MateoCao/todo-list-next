@@ -1,23 +1,24 @@
 import EditTask from './(components)/editTask'
 import MainTask from './(components)/mainTask'
 import MainTaskBar from './(components)/mainTaskBar'
-import OptionsRecurrence from './(components)/optionsRecurrence'
 import Task from './(components)/task'
 import TaskList from './(components)/taskList'
+import { ContextProvider } from './(context)/context'
 
 export default function Home () {
   return (
-    <main className="flex w-[86vw] h-screen">
-        <MainTask>
-          <MainTaskBar />
-          <TaskList width="full">
-            <Task> Esta es una tarea </Task>
-            <Task> Realizar cosas </Task>
-            <Task> Gym </Task>
-            <Task> Soy una nueva taskk </Task>
-          </TaskList>
-          <EditTask visible={false} />
-        </MainTask>
-    </main>
+    <ContextProvider>
+      <main className="flex w-full h-screen">
+          <MainTask className={"bg-[url('./(components)/(img)/montania.jpg')]"}>
+            <MainTaskBar />
+            <TaskList bgTask={'bg-slate-200/50'} bgBody={''} bgHeaderAndFooter={'bg-slate-200/50'}>
+              <Task bg={'bg-slate-200/50'}>  Esta es una tarea </Task>
+              <Task bg={'bg-slate-200/50'}> Realizar cosas </Task>
+              <Task bg={'bg-slate-200/50'}> Gym </Task>
+            </TaskList>
+            <EditTask visible={false} />
+          </MainTask>
+      </main>
+    </ContextProvider>
   )
 }

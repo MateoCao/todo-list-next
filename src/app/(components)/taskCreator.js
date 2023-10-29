@@ -1,36 +1,24 @@
 'use client'
+import React, { useContext, useState } from 'react'
 import { BsArrowUpCircle } from 'react-icons/bs'
-import { useForm } from 'react-hook-form'
 import IconButton from './iconButton'
+import { Context } from '../(context)/context'
+import Task from './task'
 
-export default function TaskCreator () {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors }
-  } = useForm()
-
-  const onSubmit = async (data) => {
-    console.log(data)
-    reset()
-  }
+export default function TaskCreator ({ children, className, taskColor }) {
+  // Inicializa el valor del input con el texto proporcionado o una cadena vacía
+  const [taskText, setTaskText] = useState(children || '')
 
   return (
-        <div id="taskCreator" className="w-full flex  items-center border bg-slate-300 px-5 h-10 rounded-b-xl drop-shadow-lg">
-          <form className="w-full my-auto flex gap-5 items-center justify-evenly" onSubmit={handleSubmit(onSubmit)}>
+        <div id="taskCreator" className="w-full flex border bg-slate-300 items-center justify-evenly px-5 h-10 rounded-b-xl drop-shadow-lg">
             <input
-                  type="text"
-                  name="description"
-                  id="description"
-                  className="h-5 w-10/12 border rounded-xl bg-slate-100 p-3 text-xs text-black"
-                  {...register('description')}
+                type="text"
+                id="taskText"
+                className="h-5 w-10/12 border rounded-xl bg-slate-100 px-5 text-xs"
+                value={taskText} // Establece el valor del input
+                onChange={(e) => setTaskText(e.target.value)} // Maneja cambios en el input
             />
-            {errors.name?.message && (
-              <p className='text-sm text-red-600'>{errors.name.message}</p>
-            )}
-            <button className='text-2xl' type='sumbit'><IconButton icon={ <BsArrowUpCircle /> } /></button>
-          </form>
+            <IconButton icon={ <BsArrowUpCircle /> } />
 
         </div>
   )

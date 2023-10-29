@@ -1,10 +1,8 @@
-export default function MainTask ({ children, bgimagen }) {
-  const sectionStyle = {
-    backgroundImage: 'url(' + { bgimagen } + ')'
-  }
-
-  return (
-        <section id='mainTask'className={`w-full p-8 ${bgimagen ? sectionStyle : 'bg-gradient-to-r from-cyan-500 to-blue-500'} flex flex-wrap align-items gap-10`} >
+export default function MainTask ({ children, className }) {
+    
+    return(
+        <section id='mainTask'
+        className={`h-screen w-full p-8 ${ className } flex flex-wrap align-items justify-center gap-10`} >
             { children }
         </section>
   )
