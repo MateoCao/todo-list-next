@@ -1,24 +1,37 @@
 'use client'
-import React, { useState } from 'react';
-import { BsArrowUpCircle } from 'react-icons/bs';
-import IconButton from './iconButton';
+import { BsArrowUpCircle } from 'react-icons/bs'
+import { useForm } from 'react-hook-form'
+import IconButton from './iconButton'
 
-export default function TaskCreator ({ children }) {
+export default function TaskCreator () {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm()
 
-    // Inicializa el valor del input con el texto proporcionado o una cadena vacía
-    const [taskText, setTaskText] = useState(children || ''); 
+  const onSubmit = async (data) => {
+    console.log(data)
+    reset()
+  }
 
-    return(
-        <div id="taskCreator" className="w-full flex border bg-slate-300 items-center justify-evenly px-5 h-10 rounded-b-xl drop-shadow-lg">
+  return (
+        <div id="taskCreator" className="w-full flex  items-center border bg-slate-300 px-5 h-10 rounded-b-xl drop-shadow-lg">
+          <form className="w-full my-auto flex gap-5 items-center justify-evenly" onSubmit={handleSubmit(onSubmit)}>
             <input
-                type="text"
-                id="taskText"
-                className="h-5 w-10/12 border rounded-xl bg-slate-100 px-5 text-xs"
-                value={taskText} // Establece el valor del input
-                onChange={(e) => setTaskText(e.target.value)} // Maneja cambios en el input
+                  type="text"
+                  name="description"
+                  id="description"
+                  className="h-5 w-10/12 border rounded-xl bg-slate-100 p-3 text-xs text-black"
+                  {...register('description')}
             />
-            <IconButton icon={ <BsArrowUpCircle /> } />
-            
+            {errors.name?.message && (
+              <p className='text-sm text-red-600'>{errors.name.message}</p>
+            )}
+            <button className='text-2xl' type='sumbit'><IconButton icon={ <BsArrowUpCircle /> } /></button>
+          </form>
+
         </div>
-    )
+  )
 }

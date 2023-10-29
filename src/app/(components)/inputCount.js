@@ -1,28 +1,27 @@
 'use client'
-import { useState } from "react"
+import { useState } from 'react'
 
 export default function InputCount () {
+  const [texto, setTexto] = useState('')
 
-    const [texto, setTexto] = useState('');
+  // Función de manejo para actualizar el estado cuando el input cambie
+  const handleInputChange = (event) => {
+    setTexto(event.target.value)
+  }
 
-    // Función de manejo para actualizar el estado cuando el input cambie
-    const handleInputChange = (event) => {
-      setTexto(event.target.value);
-    };
-    
-    const sumar = () => {
-        setTexto(texto+1)
+  const sumar = () => {
+    setTexto(texto + 1)
+  }
+
+  const restar = () => {
+    if (texto - 1 >= 0) {
+      setTexto(texto - 1)
+    } else {
+      setTexto(0)
     }
+  }
 
-    const restar = () => {
-        if ( texto-1 >= 0 ) {
-            setTexto(texto-1)
-        } else {
-            setTexto(0)
-        }
-    }
-
-    return (
+  return (
         <div className="rounded-sm p-1 flex justify-center items-center gap-2">
             <button onClick={sumar} className="h-full w-2 text-bold">+</button>
             <input
@@ -33,5 +32,5 @@ export default function InputCount () {
             />
             <button onClick={restar} className="h-full w-2 text-bold">-</button>
         </div>
-    )
+  )
 }

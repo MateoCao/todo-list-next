@@ -1,6 +1,7 @@
 import EditTask from './(components)/editTask'
 import MainTask from './(components)/mainTask'
 import MainTaskBar from './(components)/mainTaskBar'
+import OptionsRecurrence from './(components)/optionsRecurrence'
 import Task from './(components)/task'
 import TaskList from './(components)/taskList'
 

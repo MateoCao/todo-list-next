@@ -9,7 +9,7 @@ export default function TaskList ({ children, bg, width }) {
             <div className="rounded-xl drop-shadow-lg flex justify-center flex-wrap p-5 h-5/6 w-full content-start gap-2">
                 { children }
             </div>
-            <TaskCreator></TaskCreator>
+            <TaskCreator />
         </section>
   )
 }
