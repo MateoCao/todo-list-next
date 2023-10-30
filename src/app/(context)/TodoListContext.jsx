@@ -1,6 +1,7 @@
+'use client'
+
 import { createContext, useContext, useState } from 'react'
-import { API } from '../util/apiTasks'
-import Cookies from 'js-cookie'
+import { API } from '../(utils)/apiTasks.js'
 
 const TodoContext = createContext()
 
@@ -16,11 +17,11 @@ export const TodoProvider = ({ children }) => {
   // Obtener tareas
 
   const getTasks = async (bool) => {
-    const cookies = Cookies.get()
     try {
-      const tasks = await API.getTasks(cookies.token)
-      const filteredTasks = tasks.filter(task => task.completed === bool)
-      return filteredTasks
+      const tasks = await API.getTasks()
+      // const filteredTasks = tasks.filter(task => task.completed === bool)
+      // console.log('FITLRO', filteredTasks)
+      return tasks
     } catch (error) {
       console.error('Error al cargar las tareas:', error)
     }
@@ -28,15 +29,14 @@ export const TodoProvider = ({ children }) => {
 
   // Crear una tarea
 
-  const sendTask = async (task, e) => {
+  const sendTask = async (task) => {
     const response = await API.sendTask(task)
     if (response.ok) {
       const data = await response.json()
-      console.log(data)
       task._id = data._id
       const newTodoList = [...todoList, task]
       setTodoList(newTodoList)
-      e.target.reset()
+      return data
     } else {
       console.error('Error al crear la tarea')
     }

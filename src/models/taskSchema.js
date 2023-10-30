@@ -30,6 +30,7 @@ const taskSchema = new mongoose.Schema({
   }
 })
 
-const Task = mongoose.model('Task', taskSchema)
+// eslint-disable-next-line dot-notation
+const Task = mongoose.models['Task'] || mongoose.model('Task', taskSchema)
 
 export { Task }

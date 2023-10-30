@@ -1,24 +1,16 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useTodoContext } from '../(context)/TodoListContext'
 
 function Tasks () {
+  const { getTasks } = useTodoContext()
   useEffect(() => {
-    const getTasks = async () => {
-      try {
-        const tasks = await fetch('api/tasks', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include'
-        })
-        console.log(tasks)
-      } catch (error) {
-        console.log('Error: ', error)
-      }
+    const fetchTasks = async () => {
+      const tasks = await getTasks()
+      console.log(tasks)
     }
-    getTasks()
+    fetchTasks()
   })
   return (
         <>

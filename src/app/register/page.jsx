@@ -53,6 +53,19 @@ function Register () {
     }
   }
 
+  const handleSignOut = async () => {
+    const res = await fetch('api/auth/deletecookie', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    const status = await res.json()
+    console.log(status)
+    if (status[0] === 'Cookie deleted') {
+      console.log('anda')
+      await signOut()
+    }
+  }
+
   return (
     <div className='bg-white rounded shadow-xl flex flex-col gap-8 p-4 w-96'>
         <h3 className='text-2xl font-semibold'>Registrate aquí</h3>
@@ -72,7 +85,7 @@ function Register () {
 
             <input className='bg-sky-500 hover:bg-sky-600 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200' type='submit' value="Registrarme" />
         </form>
-        <button className='bg-white text-black w-10 h-10' onClick={async () => await signOut()}>Desloguate!!!</button>
+        <button className='bg-white text-black w-10 h-10' onClick={handleSignOut}>Desloguate!!!</button>
         <div className="flex items-center justify-center min-fit">
           <button onClick={() => signIn('google', {
             callbackUrl: '/'

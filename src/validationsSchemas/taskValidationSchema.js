@@ -13,10 +13,7 @@ const taskSchema = z.object({
   completed: z
     .boolean(),
   date: z
-    .string({
-      required_error: 'Task date is required'
-    })
-    .min(10),
+    .string(),
   expired: z
     .boolean()
 })
