@@ -67,20 +67,28 @@ export const TodoProvider = ({ children }) => {
   const deleteTask = async (task) => {
     const response = await API.deleteTask(task)
     if (response.ok) {
+      const newTodoList = todoList.filter(t => t._id !== task._id)
+      setTodoList(newTodoList)
+
       // Validación para actualizar el array de tareas correcto.
-      if (task.expired) {
-        const index = expiredTasks.findIndex(t => t._id === task._id)
-        if (index !== -1) {
-          const newExpiredTasks = expiredTasks.filter(t => t._id !== task._id)
-          setExpiredTasks(newExpiredTasks)
-        }
-      } else {
-        const index = completedTasks.findIndex(t => t._id === task._id)
-        if (index !== -1) {
-          const newCompletedTasks = completedTasks.filter(t => t._id !== task._id)
-          setCompletedTasks(newCompletedTasks)
-        }
-      }
+      // if (task.expired) {
+      //   console.log('asd', task)
+      //   const index = expiredTasks.findIndex(t => t._id === task._id)
+      //   if (index !== -1) {
+      //     const newExpiredTasks = expiredTasks.filter(t => t._id !== task._id)
+      //     setExpiredTasks(newExpiredTasks)
+      //   }
+      // }
+      // if (!task.expired) {
+      //   console.log(completedTasks)
+      //   const index = completedTasks.findIndex(t => t._id === task._id)
+      //   console.log('asasdd')
+      //   if (index !== -1) {
+      //     console.log('asd')
+      //     const newCompletedTasks = completedTasks.filter(t => t._id !== task._id)
+      //     setCompletedTasks(newCompletedTasks)
+      //   }
+      // }
     }
   }
 

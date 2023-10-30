@@ -59,9 +59,7 @@ function Register () {
       headers: { 'Content-Type': 'application/json' }
     })
     const status = await res.json()
-    console.log(status)
     if (status[0] === 'Cookie deleted') {
-      console.log('anda')
       await signOut()
     }
   }

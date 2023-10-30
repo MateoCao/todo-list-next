@@ -28,7 +28,7 @@ export default function TaskList ({ children, bgBody, bgTask, bgHeaderAndFooter,
             <div id="tasksContainer" className={`${bgBody || bgDefault} rounded-xl drop-shadow-lg flex justify-center flex-wrap p-5 w-full content-start gap-2 grow`}>
                 { children }
                 {todoList?.map((task) => (
-                  <Task taskTitle={task.title} key={task._id} />
+                  <Task task={task} taskTitle={task.title} key={task._id} />
                 ))}
             </div>
             <Pagination className={`${bgHeaderAndFooter || bgDefault}`}/>

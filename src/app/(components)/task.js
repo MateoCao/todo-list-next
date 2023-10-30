@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import TaskFunctions from './taskFunctions'
 import TaskGestions from './TaskGestions'
 
-export default function Task ({ taskTitle, bg }) {
+export default function Task ({ task, taskTitle, bg }) {
   // Inicializa el valor del input con el texto proporcionado o una cadena vacía
   const [title, setTitle] = useState(taskTitle)
 
@@ -24,6 +24,7 @@ export default function Task ({ taskTitle, bg }) {
                 <TaskFunctions
                     edit={true}
                     remove={true}
+                    task={task}
                 />
             </div>
 

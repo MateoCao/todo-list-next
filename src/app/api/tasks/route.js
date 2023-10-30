@@ -48,3 +48,17 @@ export async function POST (req) {
     return NextResponse.json(['Internal Server Error'], { status: 500 })
   }
 }
+
+export async function DELETE (req) {
+  const params = req.nextUrl.searchParams
+  const id = params.get('id')
+  console.log(id)
+  await connectDB()
+  try {
+    const deletedTask = await Task.findByIdAndDelete(id)
+    if (!deletedTask) return NextResponse.json({ error: 'Tarea no encontrada' }, { status: 404 })
+    return NextResponse.json({ status: 204 })
+  } catch (error) {
+    return NextResponse.json(['Error al eliminar tarea'], { status: 400 })
+  }
+}

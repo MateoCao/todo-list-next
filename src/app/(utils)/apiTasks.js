@@ -57,7 +57,7 @@ export const API = {
   // PATCH
   async updateCompletedTasks (task) {
     try {
-      const response = await fetch(`${this.url}/${task._id}`, {
+      const response = await fetch('api/tasks', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -92,7 +92,7 @@ export const API = {
 
   async deleteTask (task) {
     try {
-      const response = await fetch(`${this.url}/${task._id}`, {
+      const response = await fetch(`api/tasks?id=${task._id}`, {
         method: 'DELETE',
         credentials: 'include'
       })
