@@ -9,7 +9,7 @@ import FooterEditTask from "./footerEditTask"
 export default function EditTask ({ bg, visible }) {
     
     const bgDefault = "bg-slate-200"
-    const isVisible = visible | true
+    const isVisible = visible || true
 
     return(
         <section id='editTask' className={`${ bg || bgDefault } w-1/3 h-5/6 drop-shadow-lg flex flex-wrap rounded-xl flex-col justify-around ${ isVisible? "hidden" : '' }`}>

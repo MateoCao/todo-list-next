@@ -16,7 +16,7 @@ export default function Home () {
               <Task bg={"bg-slate-200/50"}> Realizar cosas </Task>
               <Task bg={"bg-slate-200/50"}> Gym </Task>
             </TaskList>
-            <EditTask visible={false} />
+            <EditTask visible={true} /> { /* no funciona el true para activar editTask */}
           </MainTask>
       </main>
     </ContextProvider>
