@@ -1,39 +1,49 @@
 'use client'
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { BsArrowUpCircle } from 'react-icons/bs'
-import IconButton from './iconButton'
-import { Context } from '../(context)/context'
-import Task from './task'
+import IconSubmitButton from './IconSubmitButton.js'
+import { useForm } from 'react-hook-form'
+import { useTodoContext } from '../(context)/TodoListContext.jsx'
 
-export default function TaskCreator ({ children, className, taskColor }) {
-  const { lsTask, setlsTask } = useContext(Context)
+export default function TaskCreator () {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm()
 
-  // Inicializa el valor del input con el texto proporcionado o una cadena vacía
-  const [taskText, setTaskText] = useState(children || '')
+  const { sendTask } = useTodoContext()
 
-  // Al cliquear guarda una nueva tarea en la lista de tareas del contexto
-  const handleCreation = () => {
+  const submitTask = async (data) => {
     const task = {
-      id: lsTask.length + 1,
-      component: <Task key={lsTask.length + 1} id={lsTask.length + 1} bg={taskColor}>{taskText}</Task>
+      title: data.title,
+      description: 'optionaldescription',
+      completed: false,
+      date: 'creationdate',
+      expired: false
     }
-    // agrega la nueva task a la lista de tareas
-    setlsTask([...lsTask, task])
+    const res = await sendTask(task)
 
-    // vuelve a poner el campo del taskCreator vacia
-    setTaskText('')
+    if (res) {
+      console.log(res)
+      reset()
+    }
   }
-
   return (
-        <div id="taskCreator" className={`w-full flex border ${className} items-center justify-evenly px-5 h-10 drop-shadow-lg rounded-lg`}>
+        <div id="taskCreator" className="w-full flex border bg-slate-300 items-center justify-evenly px-5 h-10 rounded-b-xl drop-shadow-lg">
+          <form onSubmit={handleSubmit(submitTask)}>
             <input
-                type="text"
-                id="taskText"
-                className="h-5 w-10/12 border rounded-xl bg-slate-100 px-5 text-xs"
-                value={taskText} // Establece el valor del input
-                onChange={(e) => setTaskText(e.target.value)} // Maneja cambios en el input
-            />
-            <IconButton icon={ <BsArrowUpCircle /> } onClick={ handleCreation } />
+                  type="text"
+                  id="taskText"
+                  name="title"
+                  className="h-5 w-10/12 border rounded-xl bg-slate-100 px-5 text-xs text-black"
+                  {...register('title')}
+              />
+              {errors?.message && <p className='text-sm text-red-600'>Error al subir tarea</p>}
+              <IconSubmitButton icon={ <BsArrowUpCircle /> } />
+          </form>
+
         </div>
   )
 }

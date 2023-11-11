@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import { connectDB } from '@/libs/mongodb'
 import { User } from '@/models/userSchema'
 import bcrypt from 'bcryptjs'
+import { cookies } from 'next/headers'
 
 export const authOptions = {
   providers: [
@@ -23,22 +24,23 @@ export const authOptions = {
         if (!userFound) throw new Error('Invalid credentials')
         const passwordMatched = await bcrypt.compare(credentials?.password, userFound.password)
         if (!passwordMatched) throw new Error('Invalid credentials')
+        cookies().set('userId', userFound._id)
 
-        console.log(userFound)
         return userFound
       }
     })
   ],
   callbacks: {
-    jwt ({ account, token, user, profile, session }) {
+    jwt ({ token, user }) {
       if (user) token.user = user
       return token
+    },
+    session ({ session, token }) {
+      session.user = token.user
+      return session
     }
-  },
-  session ({ session, token }) {
-    session.user = token.user
-    return session
   }
+
 }
 
 const handler = NextAuth(authOptions)

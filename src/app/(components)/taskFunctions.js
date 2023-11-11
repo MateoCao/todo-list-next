@@ -1,70 +1,42 @@
 'use client'
-import IconButton from './iconButton'
-import { MdDeleteForever, MdOutlineMoreVert, MdOutlineSaveAs } from 'react-icons/md'
+import { MdDeleteForever, MdOutlineMoreVert } from 'react-icons/md'
 import { BiSolidEditAlt } from 'react-icons/Bi'
-import { TiCancel } from 'react-icons/ti'
-import { useContext, useState } from 'react'
-import { Context } from '../(context)/context'
+import { useTodoContext } from '../(context)/TodoListContext'
 
-export default function TaskFunctions ({ edit, remove, handleIsDisabled }) {
+export default function TaskFunctions ({ edit, remove, task }) {
   return (
         <div id="taskFunctions" className="flex gap-2">
-            { handleEdit(edit, handleIsDisabled) }
-            { handleDelete(remove) }
-            { handleMoreOptions(remove) }
+            { handleEdit(edit, task) }
+            { handleDelete(remove, task) }
+            { handleMoreOptions(remove, task) }
+
         </div>
   )
 }
 
-function handleDelete (Actived) {
-  if (Actived) {
-    return <IconButton id={'deleteButton'} icon={ <MdDeleteForever /> } onClick={} />
+function handleDelete (active, task) {
+  const { deleteTask } = useTodoContext()
+
+  if (active) {
+    return <button onClick={() => deleteTask(task)} className="rounded-md drop-shadow-lg h-fit"> <MdDeleteForever /> </button>
   } else {
     return ''
   }
 }
 
-
-function handleEdit (Actived, handleIsDisabled) {
-  const [editEnabled, setEditEnabled] = useState(true)
-
-  const handleEditClick = () => {
-    setEditEnabled(!editEnabled)
+function handleEdit (active, task) {
+  const handleUpdate = async () => {
   }
-
-  // Si se activa la edicion, desactiva el disabled de la tarea desde este useState.
-  if (editEnabled) {
-    handleIsDisabled(true)
-  }
-
-  if (Actived) {
-    return (
-            <>
-                <IconButton
-                    icon={<BiSolidEditAlt />}
-                    onClick={handleEditClick}
-                    className={`${editEnabled ? '' : 'hidden'}`}
-                />
-                <IconButton
-                    icon={<MdOutlineSaveAs />}
-                    onClick={handleEditClick}
-                    className={`${editEnabled ? 'hidden' : ''}`}
-                />
-                <IconButton
-                    icon={<TiCancel />}
-                    onClick={handleEditClick}
-                    className={`${editEnabled ? 'hidden' : ''}`}
-                />
-            </>
-    )
+  if (active) {
+    return <button onClick={handleUpdate} className="rounded-md drop-shadow-lg h-fit"> <BiSolidEditAlt /> </button>
   } else {
-    return null // Devuelve null si Actived es falso
+    return ''
   }
 }
 
-function handleMoreOptions (Actived) {
-  if (Actived) {
-    return <IconButton icon={ <MdOutlineMoreVert /> } />
+function handleMoreOptions (active, task) {
+  if (active) {
+    return <button className="rounded-md drop-shadow-lg h-fit"> <MdOutlineMoreVert /> </button>
   } else {
     return ''
   }
