@@ -2,6 +2,7 @@
 import { MdDeleteForever, MdOutlineMoreVert } from 'react-icons/md'
 import { BiSolidEditAlt } from 'react-icons/Bi'
 import { useTodoContext } from '../(context)/TodoListContext'
+import { useRouter } from 'next/navigation'
 
 export default function TaskFunctions ({ edit, remove, task }) {
   return (
@@ -35,8 +36,9 @@ function handleEdit (active, task) {
 }
 
 function handleMoreOptions (active, task) {
+  const router = useRouter()
   if (active) {
-    return <button className="rounded-md drop-shadow-lg h-fit"> <MdOutlineMoreVert /> </button>
+    return <button onClick={() => router.push(`/tasks/${task._id}`)} className="rounded-md drop-shadow-lg h-fit"> <MdOutlineMoreVert /> </button>
   } else {
     return ''
   }

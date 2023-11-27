@@ -28,24 +28,40 @@ export async function POST (req) {
   const cookiesStore = cookies()
   const userId = cookiesStore.get('userId')
   const task = await req.json()
-  try {
-    const result = validateTask(task)
-    const user = userId.value
+  if (userId) {
+    try {
+      const result = validateTask(task)
+      const user = userId.value
 
-    if (!result.success) {
-      return NextResponse.json({ error: JSON.parse(result.error.message) }, { status: 400 })
+      if (!result.success) {
+        return NextResponse.json({ error: JSON.parse(result.error.message) }, { status: 400 })
+      }
+
+      const newTask = new Task({
+        ...result.data,
+        user
+      })
+      await newTask.save()
+
+      return NextResponse.json(newTask, { status: 201 })
+    } catch (error) {
+      console.error('Error in create:', error)
+      return NextResponse.json(['Internal Server Error'], { status: 500 })
     }
+  } else {
+    return NextResponse.json('No autorizado', { status: 403 })
+  }
+}
 
-    const newTask = new Task({
-      ...result.data,
-      user
-    })
-    await newTask.save()
-
-    return NextResponse.json(newTask, { status: 201 })
+export async function PATCH (req) {
+  const task = await req.json()
+  await connectDB()
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(task._id, task)
+    if (!updatedTask) return NextResponse.json({ error: 'Tarea no encontrada' }, { status: 404 })
+    return NextResponse.json({ updatedTask }, { status: 200 })
   } catch (error) {
-    console.error('Error in create:', error)
-    return NextResponse.json(['Internal Server Error'], { status: 500 })
+    return NextResponse.json(['Error al actualizar tarea'], { status: 400 })
   }
 }
 

@@ -1,21 +1,16 @@
-'use client'
-
-import { useEffect } from 'react'
-import { useTodoContext } from '../(context)/TodoListContext'
+import MainTask from '../(components)/mainTask'
+import MainTaskBar from '../(components)/mainTaskBar'
+import TaskList from '../(components)/taskList'
 
 function Tasks () {
-  const { getTasks } = useTodoContext()
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const tasks = await getTasks()
-      console.log(tasks)
-    }
-    fetchTasks()
-  })
   return (
-        <>
-
-        </>
+    <main className="flex w-full h-screen">
+      <MainTask className={"bg-[url('./(components)/(img)/montania.jpg')]"}>
+        <MainTaskBar />
+        <TaskList bgTask={'bg-slate-200/50'} bgBody={''} bgHeaderAndFooter={'bg-slate-200/50'} />
+        {/* <EditTask visible={false} /> */}
+      </MainTask>
+    </main>
   )
 }
 

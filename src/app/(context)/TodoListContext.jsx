@@ -12,18 +12,29 @@ export const useTodoContext = () => {
 export const TodoProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([])
   const [completedTasks, setCompletedTasks] = useState([])
-  const [expiredTasks, setExpiredTasks] = useState()
+  const [expiredTasks, setExpiredTasks] = useState([])
 
   // Obtener tareas
 
-  const getTasks = async (bool) => {
+  const getTasks = async () => {
     try {
       const tasks = await API.getTasks()
       // const filteredTasks = tasks.filter(task => task.completed === bool)
       // console.log('FITLRO', filteredTasks)
+      setTodoList(tasks)
       return tasks
     } catch (error) {
       console.error('Error al cargar las tareas:', error)
+    }
+  }
+
+  const getTask = async (id) => {
+    try {
+      const res = await API.getTask(id)
+      const task = await res.json()
+      return task
+    } catch (error) {
+      console.error('Error al carga la tarea:', error)
     }
   }
 
@@ -72,7 +83,6 @@ export const TodoProvider = ({ children }) => {
 
       // Validación para actualizar el array de tareas correcto.
       // if (task.expired) {
-      //   console.log('asd', task)
       //   const index = expiredTasks.findIndex(t => t._id === task._id)
       //   if (index !== -1) {
       //     const newExpiredTasks = expiredTasks.filter(t => t._id !== task._id)
@@ -80,11 +90,8 @@ export const TodoProvider = ({ children }) => {
       //   }
       // }
       // if (!task.expired) {
-      //   console.log(completedTasks)
       //   const index = completedTasks.findIndex(t => t._id === task._id)
-      //   console.log('asasdd')
       //   if (index !== -1) {
-      //     console.log('asd')
       //     const newCompletedTasks = completedTasks.filter(t => t._id !== task._id)
       //     setCompletedTasks(newCompletedTasks)
       //   }
@@ -100,6 +107,7 @@ export const TodoProvider = ({ children }) => {
       moveTaskToCompleted,
       setTodoList,
       getTasks,
+      getTask,
       sendTask,
       setCompletedTasks,
       deleteTask,

@@ -3,7 +3,7 @@ export const API = {
   // GET
   async getTasks (token) {
     try {
-      const response = await fetch('api/tasks', {
+      const response = await fetch('../api/tasks', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -22,9 +22,17 @@ export const API = {
     }
   },
 
+  async getTask (id) {
+    try {
+      const response = await fetch(`../api/tasks/${id}`)
+      return response
+    } catch (error) {
+      console.log('Error al obtener la tarea:', error)
+    }
+  },
+
   // POST
   async sendTask (task) {
-    console.log('ANTES', task)
     try {
       const response = await fetch('api/tasks', {
         method: 'POST',
@@ -42,7 +50,7 @@ export const API = {
 
   async updateTask (task) {
     try {
-      const response = await fetch(`${this.url}/${task._id}`, {
+      const response = await fetch(`../api/tasks?id=${task._id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

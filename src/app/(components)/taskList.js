@@ -11,13 +11,11 @@ export default function TaskList ({ children, bgBody, bgTask, bgHeaderAndFooter,
   const heightOption = height || 'h-5/6'
   const bgDefault = ''
 
-  const { getTasks, todoList, setTodoList } = useTodoContext()
+  const { getTasks, todoList } = useTodoContext()
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const tasks = await getTasks()
-
-      setTodoList(tasks)
+      await getTasks()
     }
     fetchTasks()
   }, [])

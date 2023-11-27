@@ -38,6 +38,29 @@ export const authOptions = {
     session ({ session, token }) {
       session.user = token.user
       return session
+    },
+    async signIn ({ account, profile }) {
+      if (account.provider === 'google') {
+        try {
+          await connectDB()
+          const userFound = await User.findOne({ email: profile.email })
+          if (userFound) {
+            cookies().set('userId', userFound._id)
+            return userFound
+          } else {
+            const newUser = await User.create({
+              username: profile.name,
+              email: profile.email,
+              password: '-'
+
+            })
+            cookies().set('userId', newUser._id)
+            return newUser
+          }
+        } catch (error) {
+          console.log('Error al registrar/loguear usuario con google', error)
+        }
+      }
     }
   }
 
