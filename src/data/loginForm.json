@@ -1,0 +1,17 @@
+[
+    {
+      "label": "Email o nombre de usuario",
+      "id": "username",
+      "type": "text",
+      "autoComplete": "username",
+      "name": "username"
+    },
+    {
+      "label": "Contraseña",
+      "id": "password",
+      "type": "password",
+      "autoComplete": "new-password",
+      "name": "password"
+    }
+  ]
+  

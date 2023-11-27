@@ -2,13 +2,12 @@ import OptionsRecurrence from './optionsRecurrence'
 import Tag from './tag'
 import TaskRecurrence from './taskRecurrence'
 import Tags from './tags'
-import Titulo from './title'
 import TitleEditable from './titleEditable'
 import FooterEditTask from './footerEditTask'
 
-export default function EditTask ({ bg, visible }) {
-  const bgDefault = 'bg-slate-200'
-  const isVisible = visible | true
+export default function EditTask ({ bg, visible }) {  
+  const bgDefault = "bg-slate-200"
+  const isVisible = visible || true
 
   return (
         <section id='editTask' className={`${bg || bgDefault} w-1/3 h-5/6 drop-shadow-lg flex flex-wrap rounded-xl flex-col justify-around ${isVisible ? 'hidden' : ''}`}>

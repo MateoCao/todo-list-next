@@ -25,3 +25,21 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+::-webkit-scrollbar {
+  /* Customize the scrollbar width */
+  width: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+::-webkit-scrollbar-track {
+  /* Customize the scrollbar track */
+  background-color: #E2E8F0;
+
+}
+
+::-webkit-scrollbar-thumb {
+  /* Customize the scrollbar thumb */  width: 5px;
+  background-color: #64748B;
+}

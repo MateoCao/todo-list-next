@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import TaskFunctions from './taskFunctions'
 import TaskGestions from './TaskGestions'
 
-export default function Task ({ task, taskTitle, bg }) {
+export default function Task ({ id, bg }) {
   // Inicializa el valor del input con el texto proporcionado o una cadena vacía
-  const [title, setTitle] = useState(taskTitle)
+  const [taskText, setTaskText] = useState('')
+  const [isDisabled, setIsDisabled] = useState(true)
 
   const bg1 = 'bg-slate-300'
+
   return (
         <div id="task" className={`h-8 w-full flex flex-wrap border rounded-xl  items-center justify-between px-5 ${bg || bg1}`}>
             <TaskGestions
