@@ -1,6 +1,6 @@
 'use client'
 import { MdDeleteForever, MdOutlineMoreVert } from 'react-icons/md'
-import { BiSolidEditAlt } from 'react-icons/Bi'
+import { BiSolidEditAlt } from 'react-icons/bi'
 import { useTodoContext } from '../(context)/TodoListContext'
 import { useRouter } from 'next/navigation'
 

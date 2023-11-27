@@ -14,6 +14,7 @@ export async function GET () {
       const tasks = await Task.find({
         user: id
       }).populate('user')
+      console.log('TAREAS', tasks)
       return NextResponse.json(tasks)
     } catch (error) {
       console.error('Error in getAll:', error)

@@ -1,6 +1,7 @@
 import './globals.css'
 import { AuthProvider } from './Providers'
 import { TodoProvider } from './(context)/TodoListContext'
+import VerticalBar from './(components)/verticalBar'
 
 export default function RootLayout (props) {
   return (
