@@ -54,7 +54,6 @@ function Register () {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   const handleSignOut = async () => {
@@ -68,7 +67,7 @@ function Register () {
     }
   }
 
-  const icons = [ <BiSolidUser size={'1.125rem'}/>, <HiOutlineMail size={'1.125rem'} />, <BiLock size={'1.125rem'}/> ]
+  const icons = [<BiSolidUser size={'1.125rem'}/>, <HiOutlineMail size={'1.125rem'} />, <BiLock size={'1.125rem'}/>]
 
   return (
     <div id='registerBody' className='flex flex-wrap w-full h-screen'>
@@ -91,7 +90,7 @@ function Register () {
 
               <input className='bg-sky-500 hover:bg-sky-600 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200' type='submit' value="Registrarme" />
           </form>
-         {/* <button className='bg-white text-black w-10 h-10' onClick={handleSignOut}>Desloguate!!!</button> 
+         {/* <button className='bg-white text-black w-10 h-10' onClick={handleSignOut}>Desloguate!!!</button>
           <div className="flex items-center justify-center min-fit">
             <button onClick={() => signIn('google', {
               callbackUrl: '/'
@@ -102,7 +101,7 @@ function Register () {
           </div> */}
           <div className='flex w-full justify-center'>
               <p>¿Ya estás registrado? <Link href="/login" className='text-sky-700'>¡Inicia sesión!</Link></p>
-              {/*<Link href="/" className='text-sky-700'>Volver al inicio</Link>*/}
+              {/* <Link href="/" className='text-sky-700'>Volver al inicio</Link> */}
           </div>
       </div>
       <div id='background' className="bg-[url('./(components)/(img)/montania.jpg')] w-2/5 h-screen">

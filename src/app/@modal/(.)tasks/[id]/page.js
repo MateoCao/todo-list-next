@@ -12,6 +12,7 @@ function TaskDetails ({ params }) {
     e.preventDefault()
     const res = await updateTask(task)
     console.log(res)
+    setTask({ ...task, title: res.task.title, description: res.task.description })
   }
 
   useEffect(() => {

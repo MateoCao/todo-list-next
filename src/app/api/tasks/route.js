@@ -59,8 +59,9 @@ export async function PATCH (req) {
   await connectDB()
   try {
     const updatedTask = await Task.findByIdAndUpdate(task._id, task)
+
     if (!updatedTask) return NextResponse.json({ error: 'Tarea no encontrada' }, { status: 404 })
-    return NextResponse.json({ updatedTask }, { status: 200 })
+    return NextResponse.json({ task }, { status: 200 })
   } catch (error) {
     return NextResponse.json(['Error al actualizar tarea'], { status: 400 })
   }

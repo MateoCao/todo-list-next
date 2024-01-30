@@ -57,7 +57,8 @@ export const TodoProvider = ({ children }) => {
     console.log(task)
     const response = await API.updateTask(task)
     if (response.ok) {
-      console.log('xd')
+      const editedTask = await response.json()
+      return editedTask
     }
   }
 
